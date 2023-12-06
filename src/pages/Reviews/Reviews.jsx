@@ -40,16 +40,16 @@ const Reviews = () => {
 
       {isLoading && <Loader />}
       <ul>
-        {!reviews && (
-          <NotFound message={"We don't have any reviews for this movie."} />
-        )}
-        {reviews &&
+        {reviews.length !== 0 ? (
           reviews.map(review => (
             <ReviewListItems key={review.id}>
               <TextStyle> {review.author}:</TextStyle>
               <TextStyle>{review.content}</TextStyle>
             </ReviewListItems>
-          ))}
+          ))
+        ) : (
+          <NotFound message={"We don't have any reviews for this movie."} />
+        )}
       </ul>
     </>
   );
